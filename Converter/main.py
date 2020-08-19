@@ -1,7 +1,7 @@
-from PIL import Image
 import tkinter as tk
-import glob
 from tkinter import ttk
+
+import convert_script
 
 #Define Main Convert Function
 def main_convert(type1, type2):
@@ -14,11 +14,7 @@ def main_convert(type1, type2):
     console1["text"] = f"Converting .{type1}\nfiles to .{type2} files..."
     console2["text"] = f"Converting .{type1}\nfiles to .{type2} files..."
 
-    for file in glob.iglob(f"Images/*.{str(type1)}"):
-        img = Image.open(file)
-        rgb_img = img.convert("RGB")
-        file = file.replace("Images", "")
-        rgb_img.save(f"Converted_Images/{file.replace(type1, type2)}", quality=95)
+    convert_script.convert(type1, type2)
 
     console1["bg"] = "gray"
     console2["bg"] = "gray"
