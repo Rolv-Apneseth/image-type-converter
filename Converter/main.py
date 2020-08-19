@@ -3,8 +3,8 @@ import tkinter as tk
 import glob
 from tkinter import ttk
 
-#Define Convert Function
-def convert(type1, type2):
+#Define Main Convert Function
+def main_convert(type1, type2):
     console1["bg"] = "black"
     console2["bg"] = "black"
 
@@ -34,14 +34,12 @@ type1 = "jpg"
 type2 = "png"
 
 #define type conversion functions
-def set_type1(x):
-    global type1
-    type1 = str(x)
+def set_type1(type1, string):
+    type1 = str(string)
     console1["text"] = f"File type to\nbe converted\nset to: .{type1}"
 
-def set_type2(x):
-    global type2
-    type2 = str(x)
+def set_type2(type2, string):
+    type2 = str(string)
     console2["text"] = f"File type to\nconvert into\n set to: .{type2}"
 
 
@@ -79,13 +77,13 @@ flabel.place(relwidth=0.925, relheight=0.2, relx=0.025, rely=0.025)
 tlabel.place(relwidth=0.925, relheight=0.2, relx=0.025, rely=0.025)
 
 #Make type Buttons
-fjpg = ttk.Button(frame1, command=lambda: set_type1("jpg"), text=".jpg")
-fpng = ttk.Button(frame1, command=lambda: set_type1("png"), text=".png")
+fjpg = ttk.Button(frame1, command=lambda: set_type1(type1, "jpg"), text=".jpg")
+fpng = ttk.Button(frame1, command=lambda: set_type1(type1, "png"), text=".png")
 
 
-tjpg = ttk.Button(frame2, command=lambda: set_type2("jpg"), text=".jpg")
-tpng = ttk.Button(frame2, command=lambda: set_type2("png"), text=".png")
-tpdf = ttk.Button(frame2, command=lambda: set_type2("pdf"), text=".pdf")
+tjpg = ttk.Button(frame2, command=lambda: set_type2(type2, "jpg"), text=".jpg")
+tpng = ttk.Button(frame2, command=lambda: set_type2(type2, "png"), text=".png")
+tpdf = ttk.Button(frame2, command=lambda: set_type2(type2, "pdf"), text=".pdf")
 
 
 #Place type buttons
@@ -98,7 +96,7 @@ tpng.place(relwidth=0.6, relheight=0.2, relx=0.2, rely=0.5)
 tpdf.place(relwidth=0.6, relheight=0.2, relx=0.2, rely=0.7)
 
 #Define Convert Button
-convert_button = ttk.Button(frame3, command=lambda: convert(type1, type2), text="Convert")
+convert_button = ttk.Button(frame3, command=lambda: main_convert(type1, type2), text="Convert")
 convert_button.place(relwidth=0.4, relheight=0.8, relx=0.3, rely=0.1)
 
 #Define Console1
