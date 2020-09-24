@@ -1,5 +1,6 @@
 import glob
 from PIL import Image
+import sys
 
 def convert(type1, type2):
     print(f"Converting .{type1}\nfiles to .{type2} files...")
@@ -13,6 +14,4 @@ def convert(type1, type2):
     print(f"Finished converting\n.{type1} files\nto .{type2} files")
 
 
-if __name__ == "__main__":
-    import sys
-    convert(sys.argv[1], sys.argv[2])
+convert(sys.argv[1], sys.argv[2])

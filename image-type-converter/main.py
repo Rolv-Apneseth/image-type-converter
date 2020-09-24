@@ -1,10 +1,10 @@
+from PIL import Image
 import tkinter as tk
+import glob
 from tkinter import ttk
 
-import convert_script
-
-#Define Main Convert Function
-def main_convert(type1, type2):
+#Define Convert Function
+def convert(type1, type2):
     console1["bg"] = "black"
     console2["bg"] = "black"
 
@@ -14,7 +14,11 @@ def main_convert(type1, type2):
     console1["text"] = f"Converting .{type1}\nfiles to .{type2} files..."
     console2["text"] = f"Converting .{type1}\nfiles to .{type2} files..."
 
-    convert_script.convert(type1, type2)
+    for file in glob.iglob(f"Images/*.{str(type1)}"):
+        img = Image.open(file)
+        rgb_img = img.convert("RGB")
+        file = file.replace("Images", "")
+        rgb_img.save(f"Converted_Images/{file.replace(type1, type2)}", quality=95)
 
     console1["bg"] = "gray"
     console2["bg"] = "gray"
@@ -30,12 +34,14 @@ type1 = "jpg"
 type2 = "png"
 
 #define type conversion functions
-def set_type1(type1, string):
-    type1 = str(string)
+def set_type1(x):
+    global type1
+    type1 = str(x)
     console1["text"] = f"File type to\nbe converted\nset to: .{type1}"
 
-def set_type2(type2, string):
-    type2 = str(string)
+def set_type2(x):
+    global type2
+    type2 = str(x)
     console2["text"] = f"File type to\nconvert into\n set to: .{type2}"
 
 
@@ -73,13 +79,13 @@ flabel.place(relwidth=0.925, relheight=0.2, relx=0.025, rely=0.025)
 tlabel.place(relwidth=0.925, relheight=0.2, relx=0.025, rely=0.025)
 
 #Make type Buttons
-fjpg = ttk.Button(frame1, command=lambda: set_type1(type1, "jpg"), text=".jpg")
-fpng = ttk.Button(frame1, command=lambda: set_type1(type1, "png"), text=".png")
+fjpg = ttk.Button(frame1, command=lambda: set_type1("jpg"), text=".jpg")
+fpng = ttk.Button(frame1, command=lambda: set_type1("png"), text=".png")
 
 
-tjpg = ttk.Button(frame2, command=lambda: set_type2(type2, "jpg"), text=".jpg")
-tpng = ttk.Button(frame2, command=lambda: set_type2(type2, "png"), text=".png")
-tpdf = ttk.Button(frame2, command=lambda: set_type2(type2, "pdf"), text=".pdf")
+tjpg = ttk.Button(frame2, command=lambda: set_type2("jpg"), text=".jpg")
+tpng = ttk.Button(frame2, command=lambda: set_type2("png"), text=".png")
+tpdf = ttk.Button(frame2, command=lambda: set_type2("pdf"), text=".pdf")
 
 
 #Place type buttons
@@ -92,7 +98,7 @@ tpng.place(relwidth=0.6, relheight=0.2, relx=0.2, rely=0.5)
 tpdf.place(relwidth=0.6, relheight=0.2, relx=0.2, rely=0.7)
 
 #Define Convert Button
-convert_button = ttk.Button(frame3, command=lambda: main_convert(type1, type2), text="Convert")
+convert_button = ttk.Button(frame3, command=lambda: convert(type1, type2), text="Convert")
 convert_button.place(relwidth=0.4, relheight=0.8, relx=0.3, rely=0.1)
 
 #Define Console1
