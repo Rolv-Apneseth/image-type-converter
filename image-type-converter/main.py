@@ -1,7 +1,9 @@
 from PIL import Image
 import tkinter as tk
 import glob
+import os
 from tkinter import ttk
+
 
 
 # Define Convert Function
@@ -54,7 +56,9 @@ def set_type2(x):
 root = tk.Tk()
 
 # Set icon and title for window
-root.iconbitmap("icon.ico")
+FOLDER = os.path.dirname(os.path.abspath(__file__))
+icon = tk.PhotoImage(os.path.join(FOLDER, "assets", "icon.ico"))
+root.tk.call('wm', 'iconphoto', root._w, icon)
 root.title("Simple Image Converter")
 
 # define canvas
