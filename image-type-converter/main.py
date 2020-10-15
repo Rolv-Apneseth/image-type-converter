@@ -5,7 +5,6 @@ import os
 from tkinter import ttk
 
 
-
 # Define Convert Function
 def convert(type1, type2):
     console1["bg"] = "black"
@@ -14,15 +13,16 @@ def convert(type1, type2):
     console1["fg"] = "white"
     console2["fg"] = "white"
 
-    console1["text"] = f"Converting .{type1}\nfiles to .{type2} files..."
-    console2["text"] = f"Converting .{type1}\nfiles to .{type2} files..."
+    console1["text"] = f"Converting .{type1[0]}\nfiles to .{type2[0]} files..."
+    console2["text"] = f"Converting .{type1[0]}\nfiles to .{type2[0]} files..."
 
-    for file in glob.iglob(f"Images/*.{str(type1)}"):
+    for file in glob.iglob(f"Images/*.{str(type1[0])}"):
         img = Image.open(file)
         rgb_img = img.convert("RGB")
         file = file.replace("Images", "")
+        print(f"Converted_Images/{file.replace(type1[0], type2[0])}")
         rgb_img.save(
-            f"Converted_Images/{file.replace(type1, type2)}", quality=95)
+            f"Converted_Images/{file.replace(type1[0], type2[0])}", quality=95)
 
     console1["bg"] = "gray"
     console2["bg"] = "gray"
@@ -30,29 +30,27 @@ def convert(type1, type2):
     console1["fg"] = "black"
     console2["fg"] = "black"
 
-    console1["text"] = f"Finished converting\n.{type1} files\nto .{type2} files"
-    console2["text"] = f"Finished converting\n.{type1} files\nto .{type2} files"
+    console1["text"] = f"Finished converting\n.{type1[0]} files\nto .{type2[0]} files"
+    console2["text"] = f"Finished converting\n.{type1[0]} files\nto .{type2[0]} files"
 
 
-# Set Default types
-type1 = "jpg"
-type2 = "png"
-
-# define type conversion functions
+# Variables (default values for conversion i.e. jpg to png)
+type1 = ["jpg"]
+type2 = ["png"]
 
 
-def set_type1(x):
-    global type1
-    type1 = str(x)
-    console1["text"] = f"File type to\nbe converted\nset to: .{type1}"
+# Button Functions
+def set_type1(type1, x):
+    type1[0] = x
+    console1["text"] = f"File type to\nbe converted\nset to: .{type1[0]}"
 
 
-def set_type2(x):
-    global type2
-    type2 = str(x)
-    console2["text"] = f"File type to\nconvert into\n set to: .{type2}"
+def set_type2(type2, x):
+    type2[0] = x
+    console2["text"] = f"File type to\nconvert into\n set to: .{type2[0]}"
 
 
+# UI ---------------------------------------------------------------------
 root = tk.Tk()
 
 # Set icon and title for window
@@ -90,13 +88,13 @@ flabel.place(relwidth=0.925, relheight=0.2, relx=0.025, rely=0.025)
 tlabel.place(relwidth=0.925, relheight=0.2, relx=0.025, rely=0.025)
 
 # Make type Buttons
-fjpg = ttk.Button(frame1, command=lambda: set_type1("jpg"), text=".jpg")
-fpng = ttk.Button(frame1, command=lambda: set_type1("png"), text=".png")
+fjpg = ttk.Button(frame1, command=lambda: set_type1(type1, "jpg"), text=".jpg")
+fpng = ttk.Button(frame1, command=lambda: set_type1(type1, "png"), text=".png")
 
 
-tjpg = ttk.Button(frame2, command=lambda: set_type2("jpg"), text=".jpg")
-tpng = ttk.Button(frame2, command=lambda: set_type2("png"), text=".png")
-tpdf = ttk.Button(frame2, command=lambda: set_type2("pdf"), text=".pdf")
+tjpg = ttk.Button(frame2, command=lambda: set_type2(type2, "jpg"), text=".jpg")
+tpng = ttk.Button(frame2, command=lambda: set_type2(type2, "png"), text=".png")
+tpdf = ttk.Button(frame2, command=lambda: set_type2(type2, "pdf"), text=".pdf")
 
 
 # Place type buttons
