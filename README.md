@@ -11,8 +11,8 @@ Converts files between different image file types e.g. png, jpg, pdf etc. One of
 ## Installation
 
 1. Requires python 3.6+ to run. Python can be installed from [here](https://www.python.org/downloads/).
-2. To download, click on code to the top right and download as a zip file. You can unzip using your preferred program.
-   - You can also clone the repository using git
+2. To download, click on 'Code' to the top right, then download as a zip file. You can unzip using your preferred program.
+   - You can also clone the repository using `git clone https://github.com/Rolv-Apneseth/image-type-converter.git`
 3. Install the requirements for the program.
    - In your terminal, navigate to the unzipped folder and run: `python3 -m pip install -r requirements.txt`
 4. To run the actual program, navigate further into the image-type-converter folder and run: `python3 main.py`
@@ -24,4 +24,6 @@ Converts files between different image file types e.g. png, jpg, pdf etc. One of
 3. On the right side of the gui, click on the image type you want to convert them into.
 4. Click on the convert button. Your converted images can be found inside the Converted_Images folder.
 
-Alternatively, run convert_script.py and give the file type you want to convert from and to as the first two arguments \* i.e. Run: python3 convert_script.py "jpg" "png" to convert .jpg files to .png.
+Alternatively, run convert_script.py and give the file type you want to convert from and to as the first two arguments.
+
+For example: `python3 convert_script.py jpg png` converts .jpg files to .png.
