@@ -11,10 +11,10 @@ Converts files between different image file types e.g. png, jpg, pdf etc. One of
 ## Installation
 
 1. Requires python 3.6+ to run. Python can be installed from [here](https://www.python.org/downloads/).
-2. Clone the repository by opening your command line/terminal and run: `git clone https://github.com/Rolv-Apneseth/image-type-converter.git`
-   - Note: if you don't have git, it can be downloaded from [here](https://git-scm.com/downloads).
+2. To download, click on code to the top right and download as a zip file. You can unzip using your preferred program.
+   - You can also clone the repository using git
 3. Install the requirements for the program.
-   - In your terminal, navigate to the cloned directory and run: `python3 -m pip install -r requirements.txt`
+   - In your terminal, navigate to the unzipped folder and run: `python3 -m pip install -r requirements.txt`
 4. To run the actual program, navigate further into the image-type-converter folder and run: `python3 main.py`
 
 ## Usage
