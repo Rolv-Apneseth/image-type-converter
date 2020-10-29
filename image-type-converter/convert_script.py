@@ -1,6 +1,7 @@
 import glob
-from PIL import Image
 import sys
+
+from PIL import Image
 
 
 def convert(type1, type2):
@@ -10,8 +11,7 @@ def convert(type1, type2):
         img = Image.open(file)
         rgb_img = img.convert("RGB")
         file = file.replace("Images", "")
-        rgb_img.save(
-            f"Converted_Images/{file.replace(type1, type2)}", quality=95)
+        rgb_img.save(f"Converted_Images/{file.replace(type1, type2)}", quality=95)
 
     print(f"Finished converting\n.{type1} files\nto .{type2} files")
 
